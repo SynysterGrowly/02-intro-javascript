@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { getHeroesByOwner } from "./temas/08-imp-exp";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const getHeroesByOwnerAsync = (owner) => {
+  return new Promise((resolve, reject) => {
+    const heroOwner = getHeroesByOwner(owner);
+    if (heroOwner) {
+      resolve(heroOwner)
+    } else {
+      reject('No se encuentra marca del superheroe')
+    }
+  });
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+getHeroesByOwnerAsync('DCAA')
+  .then(console.log)
+  .catch(console.warn)
